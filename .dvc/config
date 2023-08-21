@@ -1,0 +1,5 @@
+[core]
+    analytics = false
+['remote "data_storage"']
+    url = s3://dvc
+    endpointurl = https://dagshub.com/ehoanshelt/Support-Ticket-Categorizer.s3
