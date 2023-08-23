@@ -1,7 +1,12 @@
 import numpy as np
 import pandas as pd
+import os
+import yaml
 
-raw_data = pd.read_csv("data/raw/customer_support_tickets.csv")
+params = yaml.safe_load(open("params.yaml"))["process_data"]
+
+
+raw_data = pd.read_csv(params["raw_file"])
 target = "Ticket Type"
 column_for_processing = "Ticket Description"
 columns_to_process = ["Product Purchased","Ticket Description"]
@@ -18,7 +23,17 @@ def create_processed_data(data:pd.DataFrame, updated_column, columns) -> pd.Data
     data[updated_column] = data[columns].apply(add_product_purchased, axis=1)
     return data
 
-raw_data = create_processed_data(raw_data, column_for_processing, columns_to_process)
-raw_data = raw_data[["Ticket Subject", column_for_processing, target]]
-raw_data.to_csv("data/processed/customer_support_tickets_processed.csv")
+def create_output_file(data, dir, filename):
+    if not os.path.exists(dir):
+        os.mkdir(dir)
+
+    fullname = os.path.join(dir, filename)    
+
+    data.to_csv(fullname)
+
+
+processed_data = create_processed_data(raw_data, column_for_processing, columns_to_process)
+processed_data= processed_data[["Ticket Subject", column_for_processing, target]]
+create_output_file(processed_data,"data/processed", "customer_support_tickets_processed.csv")
+
 

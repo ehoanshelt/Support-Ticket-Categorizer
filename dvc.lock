@@ -1,0 +1,16 @@
+schema: '2.0'
+stages:
+  process_data:
+    cmd: python src/process.py
+    deps:
+    - path: data/raw/customer_support_tickets.csv
+      md5: 3597b88e44038ae8bcc716b208e6e7c1
+      size: 3945533
+    - path: src/process.py
+      md5: db2c9cecb7a655f7c31ed51cf2986cc5
+      size: 1142
+    outs:
+    - path: data/processed/
+      md5: 962b99b428b72963831e6ce83f7ab28d.dir
+      size: 2740376
+      nfiles: 1
