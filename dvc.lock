@@ -17,3 +17,24 @@ stages:
       md5: 962b99b428b72963831e6ce83f7ab28d.dir
       size: 2740376
       nfiles: 1
+  train_test_data:
+    cmd: python src/build_training_data.py
+    deps:
+    - path: data/processed/customer_support_tickets_processed.csv
+      md5: 75b80d920450a0b5983b185958bc26d6
+      size: 2740376
+    - path: src/build_training_data.py
+      md5: 832179c17f7e9a2695987fee54df552f
+      size: 1076
+    params:
+      params.yaml:
+        train_test.test_size: 0.33
+    outs:
+    - path: data/testing
+      md5: d0eac670f52ac3b1e89cfc0b60345ff3.dir
+      size: 1832151
+      nfiles: 1
+    - path: data/training
+      md5: e70706c1c6fd19e40ffd9258043b40d1.dir
+      size: 1832151
+      nfiles: 1

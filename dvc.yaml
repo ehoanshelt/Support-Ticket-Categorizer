@@ -8,3 +8,13 @@ stages:
       - process.raw_file
     outs:
       - data/processed/
+  train_test_data:
+    cmd: python src/build_training_data.py
+    deps:
+      - data/processed/customer_support_tickets_processed.csv
+      - src/build_training_data.py
+    params:
+      - train_test.test_size
+    outs:
+      - data/training
+      - data/testing
