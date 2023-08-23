@@ -7,10 +7,10 @@ stages:
       md5: 3597b88e44038ae8bcc716b208e6e7c1
       size: 3945533
     - path: src/process.py
-      md5: db2c9cecb7a655f7c31ed51cf2986cc5
-      size: 1142
+      md5: 330a3e80ee72bd33f6d3ed2a7884c922
+      size: 1488
     outs:
     - path: data/processed/
-      md5: 962b99b428b72963831e6ce83f7ab28d.dir
-      size: 2740376
+      md5: 00c7f1bf9109b42b7c5b5a7ff2625d72.dir
+      size: 454359
       nfiles: 1
