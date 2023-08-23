@@ -4,7 +4,7 @@ import os
 import yaml
 import sys
 
-params = yaml.safe_load(open("params.yaml"))["process_data"]
+params = yaml.safe_load(open("params.yaml"))["process"]
 
 
 raw_data = pd.read_csv(params["raw_file"])

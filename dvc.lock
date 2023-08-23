@@ -7,8 +7,11 @@ stages:
       md5: 3597b88e44038ae8bcc716b208e6e7c1
       size: 3945533
     - path: src/process.py
-      md5: 330a3e80ee72bd33f6d3ed2a7884c922
-      size: 1488
+      md5: 901b308830b9f37bbc72e1e3673cdf46
+      size: 1483
+    params:
+      params.yaml:
+        process.raw_file: data/raw/customer_support_tickets.csv
     outs:
     - path: data/processed/
       md5: 00c7f1bf9109b42b7c5b5a7ff2625d72.dir

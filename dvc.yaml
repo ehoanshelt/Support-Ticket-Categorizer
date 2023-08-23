@@ -4,5 +4,7 @@ stages:
     deps:
       - data/raw/customer_support_tickets.csv
       - src/process.py
+    params:
+      - process.raw_file
     outs:
       - data/processed/

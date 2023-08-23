@@ -1,2 +1,2 @@
-process_data:
+process:
   raw_file: "data/raw/customer_support_tickets.csv"
