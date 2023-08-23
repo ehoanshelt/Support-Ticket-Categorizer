@@ -41,7 +41,7 @@ def create_output_file(data, dir, filename):
     data.to_csv(fullname)
 
 
-processed_data = create_processed_data(raw_data, ticket_descr, [ticket_descr, pp])
+processed_data = create_processed_data(raw_data, ticket_descr, [pp, ticket_descr])
 processed_data= processed_data[["Ticket Subject", ticket_descr, target]]
 create_output_file(processed_data,"data/processed", "customer_support_tickets_processed.csv")
 
