@@ -1,2 +1,5 @@
 process:
   raw_file: "data/raw/customer_support_tickets.csv"
+train_test:
+  processed_file: "data/processed/customer_support_tickets_processed.csv"
+  test_size: .33
