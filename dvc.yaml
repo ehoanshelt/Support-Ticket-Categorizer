@@ -34,6 +34,7 @@ stages:
     deps:
       - models/model.pkl
       - src/evaluation.py
+      - data/testing/test.csv
     params:
       - evaluate.model_file
       - evaluate.test_file
