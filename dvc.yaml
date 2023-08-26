@@ -29,3 +29,14 @@ stages:
     outs:
       - models/model.pkl:
           persist: true
+  evaluate:
+    cmd: python src/evaluation.py
+    deps:
+      - models/model.pkl
+      - src/evaluation.py
+    params:
+      - evaluate.model_file
+      - evaluate.test_file
+    metrics:
+      - metrics/test_metrics.json:
+          persist: true

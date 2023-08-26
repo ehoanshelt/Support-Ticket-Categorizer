@@ -66,13 +66,30 @@ stages:
       md5: afa2675f3f36a1b61a4436549d141eec
       size: 1754573
     - path: src/train.py
-      md5: 3094870b616a35eebfede9fdc1d30631
-      size: 1296
+      md5: 65b01767a6b6424716f61d944a26ee9a
+      size: 1275
     params:
       params.yaml:
         train.output_file: models/model.pkl
         train.training_file: data/training/training.csv
     outs:
     - path: models/model.pkl
-      md5: 53c78cca334bf4d14afe8c1a371a0047
+      md5: 93d2e8dc307d6628f1bc15f26590b869
       size: 684707
+  evaluate:
+    cmd: python src/evaluation.py
+    deps:
+    - path: models/model.pkl
+      md5: 93d2e8dc307d6628f1bc15f26590b869
+      size: 684707
+    - path: src/evaluation.py
+      md5: 94aef3f7a1601dbea9d6ac7e27f6b647
+      size: 924
+    params:
+      params.yaml:
+        evaluate.model_file: models/model.pkl
+        evaluate.test_file: data/testing/test.csv
+    outs:
+    - path: metrics/test_metrics.json
+      md5: 3ecadecf96f84ab8452ef9c84c1bc346
+      size: 1182
