@@ -6,3 +6,6 @@ train_test_split:
 train:
   training_file: "data/training/training.csv"
   output_file: "models/model.pkl"
+evaluate:
+  model_file: "models/model.pkl"
+  test_file: "data/testing/test.csv"
