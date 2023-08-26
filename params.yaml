@@ -1,5 +1,8 @@
 process:
   raw_file: "data/raw/customer_support_tickets.csv"
-train_test:
+train_test_split:
   processed_file: "data/processed/customer_support_tickets_processed.csv"
   test_size: .33
+train:
+  training_file: "data/training/training.csv"
+  output_file: "models/model.pkl"
