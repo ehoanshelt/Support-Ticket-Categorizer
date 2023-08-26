@@ -7,34 +7,72 @@ stages:
       md5: 3597b88e44038ae8bcc716b208e6e7c1
       size: 3945533
     - path: src/process.py
-      md5: 6ac31862dd18fffc8dbf1f78fa3614a3
-      size: 1483
+      md5: 780e16de63d749695e50ccb7c80db64d
+      size: 1807
     params:
       params.yaml:
         process.raw_file: data/raw/customer_support_tickets.csv
     outs:
     - path: data/processed/
-      md5: 962b99b428b72963831e6ce83f7ab28d.dir
-      size: 2740376
+      md5: 87abe8c30b930578d6244d12fd5f7aa8.dir
+      size: 2615072
       nfiles: 1
   train_test_data:
-    cmd: python src/build_training_data.py
+    cmd: python src/train_test_split.py
     deps:
     - path: data/processed/customer_support_tickets_processed.csv
-      md5: 75b80d920450a0b5983b185958bc26d6
-      size: 2740376
-    - path: src/build_training_data.py
-      md5: 832179c17f7e9a2695987fee54df552f
-      size: 1076
+      md5: cdb9c07e12b1953f3bfd10310a37fe74
+      size: 2615072
+    - path: src/train_test_split.py
+      md5: 07fdc3b2b54d5f9c11ae25f7c36ff91f
+      size: 903
     params:
       params.yaml:
-        train_test.test_size: 0.33
+        train_test_split.test_size: 0.33
     outs:
     - path: data/testing
-      md5: d0eac670f52ac3b1e89cfc0b60345ff3.dir
-      size: 1832151
+      md5: 672ee24b8e8eb7e9bc39942735025cff.dir
+      size: 1754573
       nfiles: 1
     - path: data/training
-      md5: e70706c1c6fd19e40ffd9258043b40d1.dir
-      size: 1832151
+      md5: 53bfcd28f690901063c6980ce98e5567.dir
+      size: 1754573
       nfiles: 1
+  train_test_split:
+    cmd: python src/train_test_split.py
+    deps:
+    - path: data/processed/customer_support_tickets_processed.csv
+      md5: cdb9c07e12b1953f3bfd10310a37fe74
+      size: 2615072
+    - path: src/train_test_split.py
+      md5: 07fdc3b2b54d5f9c11ae25f7c36ff91f
+      size: 903
+    params:
+      params.yaml:
+        train_test_split.test_size: 0.33
+    outs:
+    - path: data/testing
+      md5: 672ee24b8e8eb7e9bc39942735025cff.dir
+      size: 1754573
+      nfiles: 1
+    - path: data/training
+      md5: 53bfcd28f690901063c6980ce98e5567.dir
+      size: 1754573
+      nfiles: 1
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/training/training.csv
+      md5: afa2675f3f36a1b61a4436549d141eec
+      size: 1754573
+    - path: src/train.py
+      md5: 3094870b616a35eebfede9fdc1d30631
+      size: 1296
+    params:
+      params.yaml:
+        train.output_file: models/model.pkl
+        train.training_file: data/training/training.csv
+    outs:
+    - path: models/model.pkl
+      md5: 53c78cca334bf4d14afe8c1a371a0047
+      size: 684707
