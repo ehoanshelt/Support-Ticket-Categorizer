@@ -5,7 +5,7 @@ import pandas as pd
 import pickle
 
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.naive_bayes import ComplementNB
+from sklearn.svm import LinearSVC
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.pipeline import Pipeline
 
@@ -19,13 +19,12 @@ parameter_grid = {
     "vect__max_df": (0.2, 0.4, 0.6, 0.8, 1.0),
     "vect__min_df": (1, 3, 5, 10),
     "vect__norm": ("l1", "l2"),
-    "clf__alpha": np.logspace(-6, 6, 13),
 }
 
 pipeline = Pipeline(
     [
         ("vect", TfidfVectorizer(stop_words="english")),
-        ("clf", ComplementNB()),
+        ("clf", LinearSVC()),
     ]
 )
 
