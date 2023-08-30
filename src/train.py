@@ -24,7 +24,7 @@ parameter_grid = {
 
 pipeline = Pipeline(
     [
-        ("vect", TfidfVectorizer()),
+        ("vect", TfidfVectorizer(stop_words="english")),
         ("clf", ComplementNB()),
     ]
 )
